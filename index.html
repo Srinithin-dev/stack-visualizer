@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stack Visualizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="flex flex-col gap-5">
+      <div class="text-3xl font-bold flex justify-center">Stack Visualizer</div>
+      <div class="flex justify-around px-10">
+        <div class="flex flex-col gap-2 w-1/2">
+          <input
+            placeholder="Enter Value"
+            id="userInput"
+            type="Number"
+            class="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border border-2 rounded-xl p-4"
+          />
+          <p class="text-red-500 text-sm" id="inputError"></p>
+        </div>
+        <div class="flex gap-5">
+          <button
+            class="bg-emerald-600 py-4 px-6 rounded-lg text-white"
+            id="push"
+          >
+            Push
+          </button>
+          <button
+            class="bg-emerald-600 py-4 px-6 rounded-lg text-white"
+            id="pop"
+          >
+            Pop
+          </button>
+          <button
+            class="bg-emerald-600 py-4 px-6 rounded-lg text-white"
+            id="reset"
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+      <div class="flex justify-around px-10 border-emerald-600">
+        <div
+          class="py-6 px-20 border-b-4 border-l-4 border-r-4 border-emerald-600"
+          id="stackContainer"
+        >
+          <div id="stackValue"></div>
+        </div>
+        <div class="flex flex-col gap-5">
+          <div>
+            <p>Top of the stack</p>
+            <span id="topOfTheStack"></span>
+          </div>
+          <div>
+            <p>Last pushed item</p>
+            <span id="lastPushed"></span>
+          </div>
+          <div>
+            <p>Last popped item</p>
+            <span id="lastPopped"></span>
+          </div>
+          <div>
+            <p>Size of the stack</p>
+            <span id="stackSize"></span>
+          </div>
+          <div class="bg-emerald-600 p-8 rounded-lg text-white">
+            <p>Message Box</p>
+            <p id="lastedMessage"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./index.js" defer></script>
+  </body>
+</html>
