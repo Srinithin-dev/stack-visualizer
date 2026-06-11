@@ -14,7 +14,9 @@ const lastedStatus = document.getElementById("lastedMessage");
 
 let stack = [];
 
-pushButton.addEventListener("click", function () {
+pushButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  console.log(getInputValue.value, "getInputValue.value.length");
   if (!getInputValue.value.length) {
     inputError.innerHTML = "please enter a value";
     return;
@@ -27,11 +29,7 @@ pushButton.addEventListener("click", function () {
   }
 
   stack.push(getInputValue.value);
-
   renderStack();
-  for (let i = stack.length; i > 0; i--) {
-    stackValue.innerHTML += `<div class="bg-emerald-600 py-4 px-6 rounded-lg text-white">${stack[i - 1]}</div>`;
-  }
 
   topOfTheStack.innerHTML = stack[stack.length - 1];
   lastPushed.innerHTML = stack[stack.length - 1];
@@ -40,12 +38,14 @@ pushButton.addEventListener("click", function () {
 });
 
 resetButton.addEventListener("click", function () {
-  renderStack();
-
+  inputError.innerHTML = "";
+  getInputValue.value = "";
+  stackValue.innerHTML = "";
   topOfTheStack.innerHTML = "";
   lastPushed.innerHTML = "";
   lastPopped.innerHTML = "";
   stackSize.innerHTML = "";
+  lastedStatus.innerHTML = `Stack reset`;
   stack = [];
 });
 
@@ -54,21 +54,8 @@ popButton.addEventListener("click", function () {
     inputError.innerHTML = "stack is empty already";
     return;
   }
-  let poppedItem = "";
+  const poppedItem = stack.pop();
   renderStack();
-
-  const a = stack.filter((value, index) => {
-    if (stack.length - 1 !== index) {
-      return value;
-    } else {
-      poppedItem = value;
-    }
-  });
-  stack = [];
-  stack.push(...a);
-  for (let i = stack.length; i > 0; i--) {
-    stackValue.innerHTML += `<div class="bg-emerald-600 py-4 px-6 rounded-lg text-white">${stack[i - 1]}</div>`;
-  }
   lastPopped.innerHTML = poppedItem;
   lastedStatus.innerHTML = `popped ${poppedItem}`;
 });
@@ -77,4 +64,12 @@ function renderStack() {
   inputError.innerHTML = "";
   getInputValue.value = "";
   stackValue.innerHTML = "";
+  console.log(stack, "stack");
+
+  let html = "";
+  for (let i = 0; i < stack.length; i++) {
+    html += `<div class="bg-emerald-600 py-4 px-6 rounded-lg text-white">${stack[i]}</div>`;
+  }
+  console.log(stackValue.innerHTML, "rendering", html);
+  stackValue.innerHTML = html;
 }
