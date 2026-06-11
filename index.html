@@ -4,73 +4,106 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stack Visualizer</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <div class="flex flex-col gap-5">
-      <div class="text-3xl font-bold flex justify-center">Stack Visualizer</div>
-      <div class="flex justify-around px-10">
-        <div class="flex flex-col gap-2 w-1/2">
-          <input
-            placeholder="Enter Value"
-            id="userInput"
-            type="Number"
-            class="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border border-2 rounded-xl p-4"
-          />
-          <p class="text-red-500 text-sm" id="inputError"></p>
-        </div>
-        <div class="flex gap-5">
-          <button
-            class="bg-emerald-600 py-4 px-6 rounded-lg text-white"
-            id="push"
-          >
-            Push
-          </button>
-          <button
-            class="bg-emerald-600 py-4 px-6 rounded-lg text-white"
-            id="pop"
-          >
-            Pop
-          </button>
-          <button
-            class="bg-emerald-600 py-4 px-6 rounded-lg text-white"
-            id="reset"
-          >
-            Reset
-          </button>
-        </div>
+
+  <body class="bg-slate-100 min-h-screen">
+    <div class="max-w-7xl mx-auto py-10 px-6">
+      <div class="text-center mb-10">
+        <h1 class="text-5xl font-bold text-emerald-600">Stack Visualizer</h1>
+
+        <p class="text-gray-500 mt-2">
+          Interactive LIFO Data Structure Visualization
+        </p>
       </div>
-      <div class="flex justify-around px-10 border-emerald-600">
-        <div
-          class="py-6 px-20 border-b-4 border-l-4 border-r-4 border-emerald-600"
-          id="stackContainer"
-        >
-          <div id="stackValue"></div>
+
+      <div class="grid lg:grid-cols-2 gap-10">
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+          <h2 class="text-xl font-semibold mb-5">Stack Operations</h2>
+
+          <input
+            id="userInput"
+            type="number"
+            placeholder="Enter a value"
+            class="w-full border rounded-xl p-4 outline-none focus:ring-2 focus:ring-emerald-500"
+          />
+
+          <p id="inputError" class="text-red-500 mt-2 text-sm"></p>
+
+          <div class="grid grid-cols-3 gap-3 mt-6">
+            <button
+              id="push"
+              class="bg-emerald-600 hover:bg-emerald-700 transition rounded-xl p-3 text-white font-semibold"
+            >
+              Push
+            </button>
+
+            <button
+              id="pop"
+              class="bg-red-500 hover:bg-red-600 transition rounded-xl p-3 text-white font-semibold"
+            >
+              Pop
+            </button>
+
+            <button
+              id="reset"
+              class="bg-gray-600 hover:bg-gray-700 transition rounded-xl p-3 text-white font-semibold"
+            >
+              Reset
+            </button>
+          </div>
+
+          <div class="mt-8 bg-slate-100 rounded-xl p-5">
+            <h3 class="font-semibold text-lg">Status</h3>
+
+            <p id="lastedMessage" class="text-gray-600 mt-2">Ready...</p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 mt-8">
+            <div class="bg-slate-50 rounded-xl p-4 shadow">
+              <p class="text-sm text-gray-500">Top of Stack</p>
+
+              <p id="topOfTheStack" class="text-2xl font-bold mt-1"></p>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 shadow">
+              <p class="text-sm text-gray-500">Stack Size</p>
+
+              <p id="stackSize" class="text-2xl font-bold mt-1"></p>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 shadow">
+              <p class="text-sm text-gray-500">Last Pushed</p>
+
+              <p id="lastPushed" class="text-2xl font-bold mt-1"></p>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 shadow">
+              <p class="text-sm text-gray-500">Last Popped</p>
+
+              <p id="lastPopped" class="text-2xl font-bold mt-1"></p>
+            </div>
+          </div>
         </div>
-        <div class="flex flex-col gap-5">
-          <div>
-            <p>Top of the stack</p>
-            <span id="topOfTheStack"></span>
+
+        <div id="stackContainer" class="bg-white rounded-2xl shadow-lg p-8">
+          <div class="flex justify-between mb-5">
+            <span class="text-emerald-600 font-bold"> TOP </span>
+
+            <span class="text-gray-400"> LIFO </span>
           </div>
-          <div>
-            <p>Last pushed item</p>
-            <span id="lastPushed"></span>
-          </div>
-          <div>
-            <p>Last popped item</p>
-            <span id="lastPopped"></span>
-          </div>
-          <div>
-            <p>Size of the stack</p>
-            <span id="stackSize"></span>
-          </div>
-          <div class="bg-emerald-600 p-8 rounded-lg text-white">
-            <p>Message Box</p>
-            <p id="lastedMessage"></p>
-          </div>
+
+          <div
+            id="stackValue"
+            class="flex flex-col-reverse gap-3 min-h-[450px] border-2 border-dashed border-emerald-400 rounded-xl p-5 bg-slate-50"
+          ></div>
+
+          <div class="text-center mt-4 text-gray-400 font-semibold">BASE</div>
         </div>
       </div>
     </div>
-    <script src="./index.js" defer></script>
+
+    <script src="./index.js"></script>
   </body>
 </html>
